@@ -1,0 +1,47 @@
+#line-chart {
+    height: 300px;
+    width: 800px;
+    margin: 0px auto;
+    margin-top: 1em;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+    color: #fff;
+}
+
+.top_menu_title {
+    font-size: 26px;
+}
+
+.padding-left-0 {
+    padding-left: 0px;
+}
+
+.bg-gray {
+    background-color: #EEEEEE;
+}
+
+.red-star {
+    color: #FF0000;
+}
+
+.page-message {
+    position: fixed;
+    top: 85px;
+    right: 40px;
+}
+
+.css_color_red {
+    color: #ff0000
+}
+
+.css_color_green {
+    color: #00FF00;
+}
+
+.btn-yellow {
+    background-color: #CABA00;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#CABA00), to(#CABA00));
+    border: 1px solid #CABA00;
+    font-weight: normal;
+}
