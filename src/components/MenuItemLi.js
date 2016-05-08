@@ -11,7 +11,7 @@ class MenuItemLi extends React.Component {
     render() {
         return (
             <li className={this.state.active}>
-                <a href={this.props.href} onClick={this._onClick}>{this.props.text}</a>
+                <a href={this.props.href} onClick={this._onClick.bind(this)}>{this.props.text}</a>
             </li>
         )
     }
