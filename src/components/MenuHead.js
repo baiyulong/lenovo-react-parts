@@ -3,45 +3,31 @@ import Icon from './Icon'
 import MenuAction from 'actions/MenuAction'
 
 class MenuHead extends React.Component {
-    constructor(props) {
-        super(props);
-        let data = this.props.data || {};
-        this.state = {
-            data: data,
-            className: data.active ? 'nav-header' : 'nav-header collapsed',
-            iconType: data.active ? 'fa fa-chevron-down' : 'fa fa-chevron-left'
-        };
-    }
     render() {
-        if (!this.state.data.text) {
+        if (!this.props.data.text) {
             return null;
         }
         let firstIcon;
-        if (this.state.data.icon) {
-            firstIcon = <Icon className={this.state.data.icon}/>
+        if (this.props.data.icon) {
+            firstIcon = <Icon className={this.props.data.icon}/>
         }
         return (
-            <a className={this.state.className} onClick={this._onClick.bind(this)}>
+            <a className={this.props.className} onClick={this._onClick.bind(this)}>
                 {firstIcon}
-                {this.state.data.text}
-                <Icon className={this.state.iconType}/>
+                {this.props.data.text}
+                <Icon className={this.props.iconType}/>
             </a>
         );
     }
     _onClick() {
-        // if (this.state.className.indexOf('collapsed') == -1) {
-        //     this.setState({
-        //         className: this.state.className + ' collapsed',
-        //         iconType: 'fa fa-chevron-left'
-        //     });
-        // } else {
-        //     this.setState({
-        //         className: this.state.className.replace(' collapsed', ''),
-        //         iconType: 'fa fa-chevron-down'
-        //     });
-        // }
-        MenuAction.toggleMenuItem(this.state.data);
+        MenuAction.toggleMenuItem(this.props.data);
     }
 }
+
+MenuHead.defaultProps = {
+    data: {},
+    className: 'nav-header collapsed',
+    iconType: 'fa fa-chevron-left'
+};
 
 export default MenuHead

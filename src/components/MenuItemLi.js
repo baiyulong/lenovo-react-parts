@@ -1,16 +1,9 @@
 import React from 'react'
 
 class MenuItemLi extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            active: '',
-            iconType: ''
-        }
-    }
     render() {
         return (
-            <li className={this.state.active}>
+            <li className={this.props.active}>
                 <a href={this.props.href} onClick={this._onClick.bind(this)}>{this.props.text}</a>
             </li>
         )

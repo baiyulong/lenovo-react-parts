@@ -15,7 +15,9 @@ class App extends React.Component {
         return (
             <div className="theme-blue">
                 <Header/>
-                <Menu/>
+                <div className="sidebar-nav">
+                    <Menu/>
+                </div>
                 <Content/>
             </div>
         );

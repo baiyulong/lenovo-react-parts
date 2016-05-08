@@ -2,14 +2,10 @@ import AppDispatcher from 'dispatcher/AppDispatcher'
 import MenuConsts from 'constonts/MenuConsts'
 import MenuSource from 'sources/MenuSource'
 import assign from 'object-assign'
-var EventEmitter = require('events').EventEmitter;
+import { EventEmitter } from 'events'
 
-const CHANGE_EVENT = 'change';
-var _menus = [];
-let source = MenuSource.getRemoteData();
-source.forEach(function(item) {
-    _menus[item.id] = item;
-});
+const CHANGE_ITEM_EVENT = 'change_item';
+var _menus = MenuSource.getRemoteData();
 
 /**
  * update item
@@ -23,19 +19,33 @@ function updateMenuItem(id, data) {
 var MenuStore = assign({}, EventEmitter.prototype, {
     /**
      * API获取Menu数据
-     * @return Object
+     * @return Array
      */
     getAll: function() {
         return _menus;
     },
+
+    /**
+     * Trigger change_item event
+     */
     emitChange: function() {
-        this.emit(CHANGE_EVENT);
+        this.emit(CHANGE_ITEM_EVENT);
     },
+
+    /**
+     * Add change_item event
+     * @param {func} callback
+     */
     addChangeListener: function(callback) {
-        this.on(CHANGE_EVENT, callback);
+        this.on(CHANGE_ITEM_EVENT, callback);
     },
+
+    /**
+     * Remove change_item event
+     * @param {func} callback
+     */
     removeChangeListener: function(callback) {
-        this.removeListener(CHANGE_EVENT, callback);
+        this.removeListener(CHANGE_ITEM_EVENT, callback);
     }
 });
 

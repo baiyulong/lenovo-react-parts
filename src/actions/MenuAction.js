@@ -11,7 +11,6 @@ module.exports = {
         let actionType = item.active ?
             MenuConsts.CLOSE_ITEM :
             MenuConsts.OPEN_ITEM;
-            console.log(actionType);
         AppDispatcher.dispatch({
             actionType: actionType,
             id: id
