@@ -1,47 +1,16 @@
-let menuData = [
-    {
-        id: 1,
-        text: 'Service Management',
-        icon: 'fa fa-recycle',
-        active: false,
-        items: [
-            {
-                id: 1,
-                href: 'http://www.baidu.com',
-                text: 'Entitlement Check'
-            },
-            {
-                id: 2,
-                href: '#12',
-                text: 'Create Service Order'
-            }
-        ]
-    },
-    {
-        id: 2,
-        text: 'System Management',
-        icon: 'fa fa-cog',
-        active: false,
-        items: [
-            {
-                id: 1,
-                href: '#21',
-                text: 'Vendor'
-            },
-            {
-                id: 2,
-                href: '#22',
-                text: 'User'
-            }
-        ]
-    }
-];
+import MenuAction from 'actions/MenuAction'
+import 'whatwg-fetch'
+
 module.exports =  {
+    /**
+     * API 获取menu数据
+     */
     getRemoteData: function() {
-        let _menus = [];
-        menuData.forEach(function(item) {
-            _menus[item.id] = item;
-        });
-        return _menus;
+        fetch('http://pm.php.local/test').then(res => res.json()).then(function(data) {
+            if (typeof data == 'object' && data.length > 0) {
+                MenuAction.loadData(data);
+            }
+        }).catch(ex => console.log('Parsing Failed', ex));
+        return [];
     }
 }

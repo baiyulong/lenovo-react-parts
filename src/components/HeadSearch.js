@@ -4,7 +4,7 @@ import Icon from './Icon'
 class HeadSearch extends React.Component {
     render() {
         return (
-            <div className="navbar-form navbar-left" role="search">
+            <form className="navbar-form navbar-left" role="search">
                 <div className="form-group">
                     <div className="input-group">
                         <div className="input-group-addon">
@@ -14,7 +14,7 @@ class HeadSearch extends React.Component {
                     </div>
                     <button type="submit" className="btn btn-info" style={{'marginLeft': '5px'}}>Search</button>
                 </div>
-            </div>
+            </form>
         );
     }
 }

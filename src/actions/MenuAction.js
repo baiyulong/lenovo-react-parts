@@ -1,19 +1,35 @@
 import AppDispatcher from 'dispatcher/AppDispatcher'
-import MenuConsts from 'constonts/MenuConsts'
+import AppConsts from 'constonts/AppConsts'
 
 module.exports = {
+    /**
+     * 加载数据
+     */
+    loadData: function(menus) {
+        AppDispatcher.dispatch({
+            actionType: AppConsts.LOAD_DATA,
+            data:menus
+        });
+    },
     /**
      * 切换菜单项
      * @return {Object}
      */
     toggleMenuItem: function(item) {
-        let id = item.id;
+        let id = item.id - 1;
         let actionType = item.active ?
-            MenuConsts.CLOSE_ITEM :
-            MenuConsts.OPEN_ITEM;
+            AppConsts.CLOSE_ITEM :
+            AppConsts.OPEN_ITEM;
         AppDispatcher.dispatch({
             actionType: actionType,
             id: id
+        });
+    },
+    activeMenuItem: function(ids) {
+        AppDispatcher.dispatch({
+            actionType: AppConsts.ACTIVE_ITEM,
+            pid: ids.pid - 1,
+            id: ids.id - 1
         });
     }
 }

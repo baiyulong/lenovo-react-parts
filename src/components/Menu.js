@@ -3,6 +3,8 @@ import MenuHead from './MenuHead'
 import MenuItem from './MenuItem'
 import MenuStore from 'stores/MenuStore'
 
+let loadingImg = require('../images/loading.gif')
+
 class Menu extends React.Component {
     constructor(props) {
         super(props);
@@ -17,7 +19,7 @@ class Menu extends React.Component {
         MenuStore.removeChangeListener(this._onChange.bind(this));
     }
     render() {
-        let items = '';
+        let items = <img src={loadingImg} />;
         if (this.state.data.length > 0) {
             items = this.state.data.map(function(item) {
                 let headClass;
@@ -35,7 +37,7 @@ class Menu extends React.Component {
                 return (
                     <li key={item.id}>
                         <MenuHead data={item} className={headClass} iconType={iconType}/>
-                        <MenuItem data={item.items} className={itemClass}/>
+                        <MenuItem data={item.items} className={itemClass} index={item.id}/>
                     </li>
                 );
             });

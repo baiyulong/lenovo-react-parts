@@ -1,10 +1,12 @@
 import React from 'react'
+import MenuAction from 'actions/MenuAction'
 
 class MenuItemLi extends React.Component {
     render() {
+        let active = this.props.data.active ? 'active' : '';
         return (
-            <li className={this.props.active}>
-                <a href={this.props.href} onClick={this._onClick.bind(this)}>{this.props.text}</a>
+            <li className={active}>
+                <a href={this.props.data.href} onClick={this._onClick.bind(this)}>{this.props.data.text}</a>
             </li>
         )
     }
@@ -13,7 +15,7 @@ class MenuItemLi extends React.Component {
      * @active 激活className
      */
     _onClick() {
-        this.setState({active: 'active'});
+        MenuAction.activeMenuItem({pid: this.props.pid, id: this.props.data.id});
     }
 }
 export default MenuItemLi
