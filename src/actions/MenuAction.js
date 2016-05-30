@@ -16,13 +16,12 @@ module.exports = {
      * @return {Object}
      */
     toggleMenuItem: function(item) {
-        let id = item.id - 1;
         let actionType = item.active ?
             AppConsts.CLOSE_ITEM :
             AppConsts.OPEN_ITEM;
         AppDispatcher.dispatch({
             actionType: actionType,
-            id: id
+            id: item.pi
         });
     },
     activeMenuItem: function(ids) {

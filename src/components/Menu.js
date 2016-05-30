@@ -21,7 +21,8 @@ class Menu extends React.Component {
     render() {
         let items = <img src={loadingImg} />;
         if (this.state.data.length > 0) {
-            items = this.state.data.map(function(item) {
+            items = this.state.data.map(function(item, i) {
+                item.pi = i;
                 let headClass;
                 let iconType;
                 let itemClass;

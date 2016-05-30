@@ -1,11 +1,37 @@
 import AppDispatcher from 'dispatcher/AppDispatcher'
 import AppConsts from 'constonts/AppConsts'
-import MenuSource from 'sources/MenuSource'
+import MenuAction from 'actions/MenuAction'
 import assign from 'object-assign'
 import { EventEmitter } from 'events'
+import 'whatwg-fetch'
+import i18n from 'stores/i18n'
 
 const CHANGE_ITEM_EVENT = 'change_item';
-var _menus = MenuSource.getRemoteData();
+
+/**
+ * Get menu data
+ * @author BaiYulong<baiyl3@lenovo.com>
+ */
+function getRemoteData() {
+    fetch('http://pm.php.local/menu/all').then(res => res.json()).then(function(data) {
+        console.log(i18n.langData.`${/servicemachine/checkimei}`);
+        if (typeof data == 'object' && data.status == 1) {
+            let icons = ['fa fa-recycle', 'fa fa-cog', 'fa fa-bar-chart'];
+            let menus = data.data;
+            menus.map(function(item, i) {
+                item.icon = icons[i];
+                if (item.items.length > 0) {
+                    item.items.map(function(sitem) {
+                        sitem.text = (sitem.text);
+                    })
+                }
+            })
+            MenuAction.loadData(menus);
+        }
+    }).catch(ex => console.log('Parsing Failed', ex));
+    return [];
+}
+var _menus = getRemoteData();
 
 /**
  * Update _menus
